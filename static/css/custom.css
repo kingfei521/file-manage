@@ -224,3 +224,7 @@
 	.fontsize {
 		font-size: 13px;
 	}
+	.statement {
+		width: fit-content;
+		align-content: center;
+	}

@@ -25,7 +25,7 @@ def upload():
         f = request.files.get('file')
 
         f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
-    return render_template('index.html')
+    return render_template('basepage.html')
 
 
 @app.route("/upload-file", methods=["GET", "POST"])

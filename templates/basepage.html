@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %} Home</title>
+
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    {% endblock %}
+
+  </head>
+<body>
+  <!--  文件上传页面-->
+  {% block upload_file_arae %}
+
+  {% endblock %}
+
+  <!--  展示列表-->
+  {% block show_file_arae %}
+
+  {% endblock %}
+
+  <!--  公用弹窗页面-->
+  {% block modal_html %}
+
+  {% endblock %}
+
+  <!--  js-->
+  {% block js %}
+  <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/js/filedownload.js"></script>
+  {% endblock %}
+
+  <div class="container statement">
+    <a>
+      <i class="fas fa-copyright" data-toggle="tooltip"></i>
+    </a> Copyright 2021, Qu Yongfei git:
+    <a href="https://github.com/kingfei521/file-manage.git">
+      <i class="fas fa-home"></i>
+    </a>
+
+  </div>
+
+</body>
+</html>
