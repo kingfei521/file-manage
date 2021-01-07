@@ -14,7 +14,7 @@ app.config.update(
     DROPZONE_ALLOWED_FILE_CUSTOM=True,  # 允许上传自定义文件格式
     DROPZONE_MAX_FILES=30,  # 一次最大上传文件数量
     DROPZONE_ALLOWED_FILE_TYPE='image/*, .pdf, .txt, .zip, .jar, .doc,'
-                               '.docx, .xls, .xlsx ',)
+                               '.docx, .xls, .xlsx',)
 
 dropzone = Dropzone(app)
 
@@ -23,14 +23,13 @@ dropzone = Dropzone(app)
 def upload():
     if request.method == 'POST':
         f = request.files.get('file')
-        if str(f.filename) == '屈永飞-4年-Python自动化测试.docx':
-            return 'file is exits'
+
         f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
     return render_template('index.html')
 
 
-@app.route("/upload-video", methods=["GET", "POST"])
-def upload_video():
+@app.route("/upload-file", methods=["GET", "POST"])
+def upload_file():
     if request.method == "POST":
 
         filesize = request.cookies.get("filesize")
@@ -38,13 +37,17 @@ def upload_video():
 
         print(f'Filesize: {filesize}')
         print(file)
-
+        file.save(os.path.join(app.config['UPLOADED_PATH'], file.filename))
         res = make_response(jsonify({"message": f"{file.filename} uploaded"}), 200)
 
         return res
 
-    return render_template('upload_video.html')
+    return render_template('upload_file.html')
 
+#
+# @app.route("/download", methods=["GET", "POST"])
+# def download_file():
+#     pass
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)
