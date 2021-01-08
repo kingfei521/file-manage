@@ -36,7 +36,7 @@ $(document).ready(function () {
             var input = document.getElementById('file_input');
             var file_input_label = document.getElementById('file_input_label');
 
-            // var down_link = document.getElementById('down_link')
+            var data_line = document.getElementById('insert_data')
 
             function show_alert(message, alert) {
                 alert_wrapper.innerHTML =`
@@ -104,9 +104,25 @@ $(document).ready(function () {
 
                     if (request.status == 200) {
                         show_alert(`${request.response.message}`, "success");
-                        // down_link.innerHTML = `
-                        //         <a href="">${filename}</a>
-                        // `
+                        data_line.innerHTML = `
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                        <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td>${request.response.fize_msg[0]}</td>
+                                    <td>${request.response.fize_msg[1]}</td>
+                                    <td>${request.response.fize_msg[2]}</td>
+                                    <td>${request.response.fize_msg[3]}</td>
+                                    <td>
+                                        <a href="#DownloadModal" class="edit" data-toggle="modal"><i class="fas fa-cloud-download-alt fa-1x" data-toggle="tooltip" title="Down"></i></a>
+                                        <a href="#DeleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt fa-1x" data-toggle="tooltip" title="Delete"></i></a>
+                                    </td>
+                                </tr>
+                        `
+                        console.log(request.response)
 
                     }
                     else {

@@ -1,8 +1,10 @@
 import os
+import time
 
 from flask import Flask, render_template, request, redirect, jsonify, make_response
 from flask_dropzone import Dropzone
 
+from FileManageApp.util import format_size
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -32,14 +34,19 @@ def upload():
 def upload_file():
     if request.method == "POST":
 
-        filesize = request.cookies.get("filesize")
+        filesize_byte = request.cookies.get("filesize")
         file = request.files['file']
-
-        print(f'Filesize: {filesize}')
-        print(file)
+        file_size = format_size(filesize_byte)
+        FileType = 'video'
         file.save(os.path.join(app.config['UPLOADED_PATH'], file.filename))
-        res = make_response(jsonify({"message": f"{file.filename} uploaded"}), 200)
+        # 格式化成2021-03-20 11:45:39形式
+        date_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        res = make_response(jsonify(
+            {
+                "message": f"{file.filename} uploaded",
+                "fize_msg": (file.filename, FileType, file_size, date_time)
 
+             }), 200)
         return res
 
     return render_template('upload_file.html')
@@ -48,6 +55,7 @@ def upload_file():
 # @app.route("/download", methods=["GET", "POST"])
 # def download_file():
 #     pass
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)
