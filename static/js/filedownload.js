@@ -104,7 +104,11 @@ $(document).ready(function () {
 
                     if (request.status == 200) {
                         show_alert(`${request.response.message}`, "success");
-                        data_line.innerHTML = `
+                        var length = $("tbody").children().length;
+                        console.log(length)
+                        var id_is = document.getElementById(filename)
+                        if (id_is == null){
+                            a = `
                                 <tr>
                                     <td>
                                         <span class="custom-checkbox">
@@ -112,17 +116,19 @@ $(document).ready(function () {
                                         <label for="checkbox1"></label>
                                         </span>
                                     </td>
-                                    <td>${request.response.fize_msg[0]}</td>
-                                    <td>${request.response.fize_msg[1]}</td>
-                                    <td>${request.response.fize_msg[2]}</td>
-                                    <td>${request.response.fize_msg[3]}</td>
+                                    <td>${request.response.file_msg[0]}</td>
+                                    <td>${request.response.file_msg[1]}</td>
+                                    <td>${request.response.file_msg[2]}</td>
+                                    <td>${request.response.file_msg[3]}</td>
                                     <td>
                                         <a href="#DownloadModal" class="edit" data-toggle="modal"><i class="fas fa-cloud-download-alt fa-1x" data-toggle="tooltip" title="Down"></i></a>
                                         <a href="#DeleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt fa-1x" data-toggle="tooltip" title="Delete"></i></a>
                                     </td>
-                                </tr>
-                        `
-                        console.log(request.response)
+                                </tr>`
+                            $("#insert_data").insertData(a)
+                        }
+
+
 
                     }
                     else {
