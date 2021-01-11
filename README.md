@@ -1,3 +1,5 @@
-# drag-drop-file-flask
-1flask_dropzone拖拽上传
-2flask+bootstrap文件上传，下载web Demo
+# Flask + BootSrap 实现文件上传下载功能简单Demo
+主要功能：
+  1：文件上传，展示（上传进度条，中途取消）
+  
+  2：文件下载
