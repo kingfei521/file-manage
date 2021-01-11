@@ -108,8 +108,10 @@ $(document).ready(function () {
                         console.log(length)
                         var id_is = document.getElementById(filename)
                         if (id_is == null){
-                            a = `
-                                <tr>
+                            var add_tr = document.createElement('tr');
+                            add_tr.setAttribute("id", val=filename)
+                            
+                            add_tr.innerHTML = `
                                     <td>
                                         <span class="custom-checkbox">
                                         <input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -123,10 +125,13 @@ $(document).ready(function () {
                                     <td>
                                         <a href="#DownloadModal" class="edit" data-toggle="modal"><i class="fas fa-cloud-download-alt fa-1x" data-toggle="tooltip" title="Down"></i></a>
                                         <a href="#DeleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash-alt fa-1x" data-toggle="tooltip" title="Delete"></i></a>
-                                    </td>
-                                </tr>`
-                            $("#insert_data").insertData(a)
+                                    </td>`
+
+                            data_line.appendChild(add_tr)
+                        }else {
+                            console.log('')
                         }
+
 
 
 
